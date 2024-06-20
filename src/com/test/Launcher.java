@@ -1,8 +1,8 @@
 package com.test;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -15,25 +15,14 @@ public class Launcher extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    public void start(Stage stage) throws Exception {
 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        Parent parent = FXMLLoader.load(getClass().getResource("view/first.fxml"));
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        Scene scene = new Scene(parent, 300, 250);
+        stage.setScene(scene);
 
-        Scene scene = new Scene(root , 300,250);
-
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.show();
 
     }
 }

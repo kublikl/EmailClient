@@ -5,4 +5,5 @@ module EmailClient {
     requires javafx.web;
 
     opens com.test;
+    opens com.test.view;
 }
