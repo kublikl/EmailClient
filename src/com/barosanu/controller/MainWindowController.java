@@ -1,4 +1,3 @@
-
 package com.barosanu.controller;
 
 import com.barosanu.EmailManager;
@@ -26,6 +25,10 @@ public class MainWindowController extends BaseController {
     @FXML
     void optionsAction() {
         viewFactory.showOptionsWindow();
+    }
+    @FXML
+    void addAccountAction() {
+        viewFactory.showLoginWindow();
     }
 
 }
