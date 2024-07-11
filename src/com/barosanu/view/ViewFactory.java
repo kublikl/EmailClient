@@ -1,10 +1,7 @@
 package com.barosanu.view;
 
 import com.barosanu.EmailManager;
-import com.barosanu.controller.BaseController;
-import com.barosanu.controller.LoginWindowController;
-import com.barosanu.controller.MainWindowController;
-import com.barosanu.controller.OptionsWindowController;
+import com.barosanu.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,10 +14,15 @@ public class ViewFactory {
 
     private EmailManager emailManager;
     private ArrayList<Stage> activeStages;
+    private boolean mainViewInitialized = false;
 
     public ViewFactory(EmailManager emailManager) {
         this.emailManager = emailManager;
         activeStages = new ArrayList<Stage>();
+    }
+
+    public boolean isMainViewInitialized(){
+        return mainViewInitialized;
     }
 
     //View options handling:
@@ -53,6 +55,13 @@ public class ViewFactory {
         System.out.println("main window called");
 
         BaseController controller = new MainWindowController(emailManager, this, "MainWindow.fxml");
+        initializeStage(controller);
+        mainViewInitialized = true;
+    }
+
+    public void showComposeMessageWindow() {
+
+        BaseController controller = new ComposeMessageController(emailManager, this, "ComposeMessageWindow.fxml");
         initializeStage(controller);
     }
 
@@ -92,4 +101,6 @@ public class ViewFactory {
             scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
         }
     }
+
+
 }
